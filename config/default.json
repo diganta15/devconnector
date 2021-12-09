@@ -1,0 +1,3 @@
+{
+    "mongoURI":"mongodb://diganta:777@cluster0-shard-00-00.zng33.mongodb.net:27017,cluster0-shard-00-01.zng33.mongodb.net:27017,cluster0-shard-00-02.zng33.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-cc9uvl-shard-0&authSource=admin&retryWrites=true&w=majority"
+}
