@@ -4,9 +4,9 @@ const router = express.Router();
 
 
 //@route    POST api/posts
-//@desec   Login user
+//@desec   
 //@access   Public
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
     res.send('Posts');
 });
 
