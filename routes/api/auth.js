@@ -1,5 +1,6 @@
 const express = require("express");
 const config = require("config");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
@@ -40,31 +41,20 @@ router.post(
 			//See if user exists
 			let user = await User.findOne({ email });
 
-			if (user) {
+			if (!user) {
 				return res
 					.status(400)
-					.json({ errors: [{ msg: "User Already Exists" }] });
+					.json({ errors: [{ msg: "Invalid Credentials" }] });
 			}
 
-			//Get users gravatar
-			const avatar = gravatar.url(email, {
-				s: "200",
-				r: "pg",
-				d: "mm",
-			});
+			const isMatched = await bcrypt.compare(password, user.password);
 
-			//Doesn't save user, creates an instance
-			user = new User({
-				name,
-				email,
-				avatar,
-				password,
-			});
-
-			//Encrypt password
-			const salt = await bcrypt.genSalt(10);
-			user.password = await bcrypt.hash(password, salt);
-			await user.save();
+			if (!isMatched) {
+				return res
+					.status(400)
+					.json({ errors: [{ msg: "Invalid Credentials" }] });
+			}
+			
 
 			const payload = {
 				user: {
