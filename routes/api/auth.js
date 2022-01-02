@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
+
 const router = express.Router();
 
 //@route    POST api/auth
@@ -54,7 +55,6 @@ router.post(
 					.status(400)
 					.json({ errors: [{ msg: "Invalid Credentials" }] });
 			}
-			
 
 			const payload = {
 				user: {
@@ -66,7 +66,7 @@ router.post(
 				payload,
 				config.get("jwtSecret"),
 				{
-					expiresIn: 36000,
+					expiresIn: 3600000,
 				},
 				(err, token) => {
 					if (err) {
@@ -83,5 +83,6 @@ router.post(
 		}
 	}
 );
+
 
 module.exports = router;
