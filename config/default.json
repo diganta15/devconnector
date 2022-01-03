@@ -1,4 +1,6 @@
 {
     "mongoURI":"mongodb://diganta:777@cluster0-shard-00-00.zng33.mongodb.net:27017,cluster0-shard-00-01.zng33.mongodb.net:27017,cluster0-shard-00-02.zng33.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-cc9uvl-shard-0&authSource=admin&retryWrites=true&w=majority",
-    "jwtSecret":"MIDNIGHT300"
+    "jwtSecret":"MIDNIGHT300",
+    "githubClientID":"e33b035cf35443a31828",
+    "githubClientSecret":"3a77f79bdde7b4f85da87877335074215aaee734"
 }
